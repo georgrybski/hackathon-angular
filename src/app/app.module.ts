@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserRetrievalService } from './services/user-retrieval.service';
+import { UserlService } from './services/userl.service';
 import { TableModule } from 'primeng/table';
 import { UserCrudTableComponent } from './components/user-crud-table/user-crud-table.component';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -54,7 +54,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     ColorPickerModule
   ],
   providers: [
-    UserRetrievalService,
+    UserlService,
     UserDeletionService,
     UserUpdateService
   ],

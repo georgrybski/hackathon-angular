@@ -10,7 +10,7 @@ import { mapToUserViewData } from '../shared/utils';
 @Injectable({
   providedIn: 'root'
 })
-export class UserRetrievalService {
+export class UserlService {
   constructor(private http: HttpClient) { }
 
   getUserList(): Observable<UserViewData[]> {

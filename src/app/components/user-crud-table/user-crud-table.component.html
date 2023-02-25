@@ -1,0 +1,106 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+      <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 d-inline-block"></p-fileUpload>
+      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table [value]="users" [rows]="10" [paginator]="true" [responsive]="true" [selectionMode]="'multiple'"
+           [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+        <th pSortableColumn="id" style="width: 15%;">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+        <th pSortableColumn="login">Login <p-sortIcon field="login"></p-sortIcon></th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="birthDate" style="width: 15%;">Birth Date <p-sortIcon field="birthDate"></p-sortIcon></th>
+        <th style="width: 10%;"></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><p-dropdown [options]="emailProviders" (onChange)="searchByEmail($event.value)" placeholder="All email providers" class="p-column-filter"></p-dropdown></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th><input pInputText type="text" (input)="searchById($event.target.value)" placeholder="Search by ID" class="p-column-filter"></th>
+        <th><input pInputText type="text"  (input)="searchByName($event.target.value)" placeholder="Search by Name" class="p-column-filter"></th>
+        <th><input pInputText type="text" (input)="searchByLogin($event.target.value)" placeholder="Search by Login" class="p-column-filter"></th>
+        <th><input pInputText type="text" (input)="searchByEmail($event.target.value)" placeholder="Search by Email" class="p-column-filter"></th>
+        <th><p-dropdown [options]="months" (onChange)="searchByBirthMonth($event.value)" placeholder="Select a month" class="p-column-filter"></p-dropdown></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+        </td>
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.login}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.birthDate | date: 'dd/MM/yyyy'}}</td>
+        <td class="text-right">
+          <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-3" (click)="editUser(user)"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-warning mr-3" (click)="deleteUser(user)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="d-flex ai-center jc-between">
+        In total there {{(users? users.length : 0) != 1? "are " +((users? users.length : 0) + " users ") : "is 1 user "}}that fit the search parameters.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="{{ isCreationForm ? 'Create User' : 'Edit User' }}" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="field">
+        <label for="name">Name</label>
+        <input pInputText class="p-inputtext-sm input-filled" id="name" type="text" [(ngModel)]="user.name" required>
+    </div>
+    <div class="field">
+      <label for="login">Login</label>
+      <input pInputText class="p-inputtext-sm" id="login" type="text" [(ngModel)]="user.login" required>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input pInputText class="p-inputtext-sm" id="email" type="text" [(ngModel)]="user.email" required>
+    </div>
+    <div class="field">
+      <label for="birthDate">Birth Date</label>
+      <p-calendar id="birthDate" [(ngModel)]="user.birthDate" dateFormat="yy-mm-dd" [showIcon]="true" required appendTo="body"></p-calendar>
+    </div>
+    <div *ngIf="isCreationForm" class="field">
+      <label for="password">Password</label>
+      <input pInputText class="p-inputtext-sm" id="password" type="password" [(ngModel)]="user.password" required>
+    </div>
+    <div *ngIf="isCreationForm" class="field">
+      <label for="passwordConfirm">Confirm Password</label>
+      <input pInputText class="p-inputtext-sm" id="passwordConfirm" type="password" [(ngModel)]="user.passwordConfirm" required>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="{{ isCreationForm ? 'Create' : 'Save changes' }}" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

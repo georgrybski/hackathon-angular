@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserlService } from './services/userl.service';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UserService } from './services/user.service';
 import { TableModule } from 'primeng/table';
 import { UserCrudTableComponent } from './components/user-crud-table/user-crud-table.component';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -20,10 +20,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
-import { UserDeletionService } from './services/user-deletion.service';
-import { UserUpdateService } from './services/user-update.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ValidatorService } from './services/validator-service';
 
 
 @NgModule({
@@ -54,9 +54,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     ColorPickerModule
   ],
   providers: [
-    UserlService,
-    UserDeletionService,
-    UserUpdateService
+    UserService, MessageService, ConfirmationService, ValidatorService, FormBuilder
   ],
   bootstrap: [AppComponent]
 })

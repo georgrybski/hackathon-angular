@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/primeng/resources/themes/bootstrap4-dark-purple/theme.css",
+              "./node_modules/primeng/resources/themes/luna-blue/theme.css",
               "./node_modules/primeng/resources/primeng.css",
               "./node_modules/primeicons/primeicons.css",
               "src/styles.css",

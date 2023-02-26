@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { TableModule } from 'primeng/table';
 import { UserCrudTableComponent } from './components/user-crud-table/user-crud-table.component';
@@ -56,6 +56,7 @@ import { ValidatorService } from './services/validator-service';
   providers: [
     UserService, MessageService, ConfirmationService, ValidatorService, FormBuilder
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

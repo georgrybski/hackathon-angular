@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,39 +8,23 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   title = 'hackathon-angular';
   items: MenuItem[];
 
+  constructor(private primengConfig: PrimeNGConfig) {}
+
+
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.items = [{
-      label: 'Options',
+      label: 'Users',
       items: [{
-        label: 'Update',
-        icon: 'pi pi-refresh',
-        command: () => {
-        }
-      },
-        {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-          }
-        }
-      ]},
-      {
-        label: 'Navigate',
-        items: [{
-          label: 'Angular Website',
-          icon: 'pi pi-external-link',
-          url: 'http://angular.io'
-        },
-          {
-            label: 'Router',
-            icon: 'pi pi-upload',
-            routerLink: '/fileupload'
-          }
-        ]}
+        label: 'User Management System',
+        icon: 'pi pi-users',
+        routerLink: 'user-crud-table'
+      }
+      ]
+    }
     ];
   }
 }

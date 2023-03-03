@@ -5,3 +5,7 @@
 .formInputField.ng-valid.ng-touched {
   border: 1px solid green;
 }
+
+.error-message {
+  color: red;
+}

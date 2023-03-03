@@ -1,6 +1,7 @@
-import {UserCreationData, UserUpdateData, UserViewData} from '../models/user-data.models';
+import { UserCreationData, UserUpdateData, UserViewData } from '../models/user-data.models';
 import { SelectItem } from 'primeng/api';
-import { FormGroup } from '@angular/forms';
+import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+
 
 export function mapToUserViewData(user: any): UserViewData {
   return {
@@ -59,3 +60,28 @@ export function formatDate(date: Date): string {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString(undefined, options);
 }
+
+
+// export function confirmPasswordValidator(controlName: string, matchingControlName: string): (formGroup: FormGroup) => void {
+//   return (formGroup: FormGroup) => {
+//     const control = formGroup.controls[controlName];
+//     const matchingControl = formGroup.controls[matchingControlName];
+//     if (
+//       matchingControl.errors &&
+//       !matchingControl.errors.confirmPasswordValidator
+//     ) {
+//       return;
+//     }
+//     if (control.value !== matchingControl.value) {
+//       matchingControl.setErrors({ confirmPasswordValidator: true });
+//     } else {
+//       matchingControl.setErrors(null);
+//     }
+//   };
+
+export const passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
+  return password?.value === confirmPassword?.value ? null : { notmatched: true };
+};
+

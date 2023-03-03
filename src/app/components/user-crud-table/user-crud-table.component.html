@@ -71,25 +71,25 @@
       <div class="field">
         <label for="name">Name</label>
         <input pInputText class="p-inputtext-sm input-filled formInputField" id="name" type="text" formControlName="name">
-        <span *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="error-message">Name is required</span>
-        <span *ngIf="userForm.get('name').hasError('minlength') && userForm.get('name').touched" class="error-message">Name must be at least 3 characters long</span>
-        <span *ngIf="userForm.get('name').hasError('maxlength') && userForm.get('name').touched" class="error-message">Name must be at most 50 characters long</span>
+        <span *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="error-message">Name is required<br></span>
+        <span *ngIf="userForm.get('name').hasError('minlength') && userForm.get('name').touched" class="error-message">Name must be at least 3 characters long<br></span>
+        <span *ngIf="userForm.get('name').hasError('maxlength') && userForm.get('name').touched" class="error-message">Name must be at most 50 characters long<br></span>
       </div>
       <div class="field">
         <label for="login">Login</label>
         <input pInputText class="p-inputtext-sm formInputField" id="login" type="text" formControlName="login">
-        <span *ngIf="userForm.get('login').hasError('required') && userForm.get('login').touched" class="error-message">Login is required</span>
-        <span *ngIf="userForm.get('login').hasError('minlength') && userForm.get('login').touched" class="error-message">Login must be at least 5 characters long</span>
-        <span *ngIf="userForm.get('login').hasError('maxlength') && userForm.get('login').touched" class="error-message">Login must be at most 20 characters long</span>
-        <span *ngIf="userForm.get('login').hasError('availability') && userForm.get('login').touched" class="error-message">Login is already taken</span>
+        <span *ngIf="userForm.get('login').hasError('required') && userForm.get('login').touched" class="error-message">Login is required<br></span>
+        <span *ngIf="userForm.get('login').hasError('minlength') && userForm.get('login').touched" class="error-message">Login must be at least 5 characters long<br></span>
+        <span *ngIf="userForm.get('login').hasError('maxlength') && userForm.get('login').touched" class="error-message">Login must be at most 20 characters long<br></span>
+        <span *ngIf="userForm.get('login').hasError('availability') && userForm.get('login').touched" class="error-message">Login is already taken<br></span>
       </div>
       <div class="field">
         <label for="email">Email</label>
         <input pInputText class="p-inputtext-sm formInputField" id="email" type="text" formControlName="email">
-        <span *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="error-message">Email is required</span>
-        <span *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched" class="error-message">Email is not valid</span>
-        <span *ngIf="userForm.get('email').hasError('minlength') && userForm.get('email').touched" class="error-message">Email must be at least 10 characters long</span>
-        <span *ngIf="userForm.get('email').hasError('availability') && userForm.get('email').touched" class="error-message">Email is already taken</span>
+        <span *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="error-message">Email is required<br></span>
+        <span *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched" class="error-message">Email is not valid<br></span>
+        <span *ngIf="userForm.get('email').hasError('minlength') && userForm.get('email').touched" class="error-message">Email must be at least 10 characters long<br></span>
+        <span *ngIf="userForm.get('email').hasError('availability') && userForm.get('email').touched" class="error-message">Email is already taken<br></span>
       </div>
       <div class="field">
         <label for="birthDate">Birth Date</label>
@@ -99,16 +99,16 @@
       <div class="field">
         <label for="password">{{ isCreationForm ? 'Password' : 'New Password' }}</label>
         <input pInputText class="p-inputtext-sm formInputField" id="password" type="password" formControlName="password">
-        <span *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="error-message">Password is required</span>
-        <span *ngIf="userForm.get('password').hasError('minlength') && userForm.get('password').touched" class="error-message">Password must be at least 6 characters long</span>
-        <span *ngIf="userForm.get('password').hasError('maxlength') && userForm.get('password').touched" class="error-message">Password must be at most 10 characters long</span>
-        <span *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched" class="error-message">Password must contain at least one uppercase letter, one lowercase letter, one digit and one symbol</span>
+        <span *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="error-message" >Password is required<br></span>
+        <span *ngIf="userForm.get('password').hasError('minlength') && userForm.get('password').touched" class="error-message">Password must be at least 6 characters long<br></span>
+        <span *ngIf="userForm.get('password').hasError('maxlength') && userForm.get('password').touched" class="error-message">Password must be at most 10 characters long<br></span>
+        <span *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched" class="error-message">Password must contain at least one uppercase letter, one lowercase letter, one digit and one symbol<br></span>
       </div>
       <div class="field">
         <label for="confirmPassword">Confirm Password</label>
         <input pInputText class="p-inputtext-sm formInputField" id="confirmPassword" type="password" formControlName="confirmPassword">
         <span *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched" class="error-message">Password confirmation is required</span>
-        <span *ngIf="userForm.get('confirmPassword').hasError('passwordMismatch') && userForm.get('confirmPassword').touched" class="error-message">Passwords do not match</span>
+        <span *ngIf="userForm.hasError('notmatched') && userForm.get('confirmPassword').touched" class="error-message">Passwords do not match</span>
       </div>
     </ng-template>
 

@@ -3,7 +3,7 @@ import { UserCreationData, UserUpdateData, UserViewData } from '../../models/use
 import { UserService } from '../../services/user.service';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { SearchParameters } from '../../models/searchParameters.model';
-import { getMonthsSelectItems } from '../../shared/utils';
+import { getMonthsSelectItems, passwordMatchingValidatior } from '../../shared/utils';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ValidatorService } from '../../services/validator-service';
 
@@ -83,13 +83,14 @@ export class UserCrudTableComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(10),
-        ValidatorService.passwordMatchValidator,
         Validators.pattern(/[A-Z]/),
         Validators.pattern(/[a-z]/),
         Validators.pattern(/[0-9]/),
-        Validators.pattern(/[!@#$]/)
+        Validators.pattern(/[!@#$%&*]/)
       ]]
-    });
+    },
+      { validators: passwordMatchingValidatior }
+  );
   }
 
   resetSearchParameters(): void {
